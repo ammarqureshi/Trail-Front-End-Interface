@@ -1,0 +1,33 @@
+h1{
+	color:#0000FF;
+}
+
+h2{
+	color:#3D5229;
+}
+
+
+.wrapper {
+	top:25px;
+    text-align: center;
+}
+
+.button {
+	padding: 10px;
+    top: 50%;
+}
+
+.forms{
+	
+	padding:30px;
+}
+
+body{
+	padding-left: 10px;
+	padding-top: 20px;
+	
+}
+div{
+	tex-align:center;
+	padding:10px;
+}
