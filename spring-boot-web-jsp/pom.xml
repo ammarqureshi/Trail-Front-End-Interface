@@ -18,6 +18,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<jena.version>3.1.1</jena.version>
+		<project.basedir>${project.basedir}</project.basedir>
 	</properties>
 
 	<dependencies>
@@ -62,8 +64,32 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
 		</dependency>
-
+		
+		<!--  Jena dependencies -->
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>jena-core</artifactId>
+			<version>${jena.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>jena-arq</artifactId>
+			<version>${jena.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- Parliament jar file, stored in ../libs -->
+		<dependency>
+			<groupId>com.sample</groupId>
+			<artifactId>sample</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}\libs\JosekiParliamentClient.jar</systemPath>
+		</dependency>
+		
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<!-- Package as an executable jar/war -->

@@ -1,0 +1,36 @@
+PREFIX afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX par: <http://parliament.semwebcentral.org/parliament#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX osi: <http://ontologies.geohive.ie/osi#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX sf: <http://www.opengis.net/ont/sf#>
+
+PREFIX trail: <http://www.this.com/ontologies/irish-trails-ontology#>
+
+# Find districts with trails with climb < given
+#   Parameters:  climb(m)
+#   Returns:     district, trailClimb(m), trailName
+
+SELECT ?districtName ?trailClimb ?trailName
+WHERE {
+  ?district a osi:Municipal_District.
+  ?district rdfs:label ?districtName.
+  ?district geo:hasGeometry ?geom.
+  ?geom geo:asWKT ?wkt.
+
+  ?trail a trail:Trail.
+  ?trail trail:trail_name ?trailName.
+  ?trail trail:hasStartPoint ?spGeom.
+  ?spGeom geo:asWKT ?trailStartPoint.
+  ?trail trail:climb ?trailClimb.
+
+  FILTER(?trailClimb < %PARAM_0% && geof:sfWithin(?trailStartPoint, ?wkt)).
+}

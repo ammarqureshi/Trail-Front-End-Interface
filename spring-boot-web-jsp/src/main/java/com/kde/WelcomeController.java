@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WelcomeController {
+	
+	private RemoteJena remote = new RemoteJena();
 
 	// inject via application.properties
 	@Value("${welcome.message:test}")
@@ -33,9 +35,22 @@ public class WelcomeController {
 
 		System.out.println("lat" + lat);
 		System.out.println("long" + lng);
+		
+		// Get the SPARQL query string
+		//String queryText = remote.getQueryText("numOfTrailsPerDistrict", new String[] {lat, lng});
+		String queryText = remote.getQueryText("numOfTrailsPerDistrict", null);
 
-		//LinkedHashmap structure
-
+		System.out.println(queryText);
+		
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+		
+		if(queryResults == null) {
+			System.err.println("A query result is not a resource or literal, exiting...");
+			System.exit(2);
+		}
+		
+		model.addAttribute("results", queryResults);
 
 		return "numOfTrailsPerDistrict";
 	}
