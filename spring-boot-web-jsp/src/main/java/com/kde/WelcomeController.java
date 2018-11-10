@@ -37,10 +37,8 @@ public class WelcomeController {
 		System.out.println("long" + lng);
 		
 		// Get the SPARQL query string
-		//String queryText = remote.getQueryText("numOfTrailsPerDistrict", new String[] {lat, lng});
-		String queryText = remote.getQueryText("numOfTrailsPerDistrict", null);
-
-		System.out.println(queryText);
+		String queryText = remote.getQueryText("numOfTrailsPerDistrict", new String[] {lng, lat});
+		//String queryText = remote.getQueryText("numOfTrailsPerDistrict", null);
 		
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
@@ -51,7 +49,8 @@ public class WelcomeController {
 		}
 		
 		model.addAttribute("results", queryResults);
-
+		System.out.println("Results added to model...");
+		
 		return "numOfTrailsPerDistrict";
 	}
 
