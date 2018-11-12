@@ -33,5 +33,5 @@ WHERE {
   ?trail trail:dogs_allowed ?trailDogsAllowed.
   ?trail trail:estimated_time_to_complete ?trailEstimatedCompletionTime.
   
-  FILTER(geof:sfWithin(?trailStartPoint, ?wkt))
-} ORDER BY ASC(?trailEstimatedCompletionTime)
+  FILTER(geof:sfWithin(?trailStartPoint, ?wkt) && (xsd:integer(?trailDogsAllowed) = 1))
+} ORDER BY ASC(xsd:integer(?trailEstimatedCompletionTime))
