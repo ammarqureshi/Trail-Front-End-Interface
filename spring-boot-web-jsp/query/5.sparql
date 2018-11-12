@@ -33,4 +33,4 @@ WHERE {
   ?trail trail:climb ?trailClimb.
 
   FILTER(xsd:integer(?trailClimb) < %PARAM_0% && geof:sfWithin(?trailStartPoint, ?wkt)).
-}
+} ORDER BY DESC(xsd:integer(?trailClimb))

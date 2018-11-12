@@ -39,9 +39,9 @@ tr:nth-child(even) {
 <table class="pure-table">
   <tr>
     <th>District</th>
-    <th>Trail name</th>
     <th>Start Point</th>
     <th>End Point</th>
+    <th>Trail name</th>
   </tr>  
   
   
