@@ -19,7 +19,7 @@ PREFIX trail: <http://example.org/trail/>
 #   Parameters:
 #   Returns:     district, trailName, startPoint, endPoint
 
-SELECT ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
+SELECT ?districtName ?trailName ?trailStartPoint ?trailFinishPoint
 WHERE {
   ?district a osi:Municipal_District.
   ?district rdfs:label ?districtName.
@@ -30,8 +30,8 @@ WHERE {
   ?trail trail:name ?trailName.
   ?trail trail:hasStartPoint ?spGeom.
   ?spGeom geo:asWKT ?trailStartPoint.
-  ?trail trail:hasEndPoint ?epGeom.
-  ?epGeom geo:asWKT ?trailEndPoint.
+  ?trail trail:hasFinishPoint ?epGeom.
+  ?epGeom geo:asWKT ?trailFinishPoint.
 
-  FILTER(geof:sfWithin(?trailStartPoint, ?wkt) && geof:sfWithin(?trailEndPoint, ?wkt)).
-}
+  FILTER(geof:sfWithin(?trailStartPoint, ?wkt) && geof:sfWithin(?trailFinishPoint, ?wkt)).
+} 

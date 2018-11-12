@@ -19,7 +19,7 @@ PREFIX trail: <http://example.org/trail/>
 #   Parameters:
 #   Returns:     district, trailName, startPoint, completionTime, dogsAllowed
 
-SELECT ?districtName ?trailName, ?trailStartPoint, ?trailEstimatedCompletionTime, ?trailDogsAllowed
+SELECT ?districtName ?trailName ?trailStartPoint ?trailEstimatedCompletionTime ?trailDogsAllowed
 WHERE {
   ?district a osi:Municipal_District.
   ?district rdfs:label ?districtName.
@@ -31,5 +31,7 @@ WHERE {
   ?trail trail:hasStartPoint ?spGeom.
   ?spGeom geo:asWKT ?trailStartPoint.
   ?trail trail:dogs_allowed ?trailDogsAllowed.
-  ?trail trail:estimatedCompletionTime ?trailEstimatedCompletionTime.
+  ?trail trail:estimated_time_to_complete ?trailEstimatedCompletionTime.
+  
+  FILTER(geof:sfWithin(?trailStartPoint, ?wkt))
 } ORDER BY ASC(?trailEstimatedCompletionTime)
