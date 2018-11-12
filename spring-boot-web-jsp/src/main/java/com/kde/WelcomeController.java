@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WelcomeController {
-	
+
 	private RemoteJena remote = new RemoteJena();
 
 	// inject via application.properties
@@ -35,21 +35,21 @@ public class WelcomeController {
 
 		System.out.println("lat" + lat);
 		System.out.println("long" + lng);
-		
+
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("numOfTrailsPerDistrict", new String[] {lng, lat});
-		
+
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
-		
+
 		if(queryResults == null) {
 			System.err.println("A query result is not a resource or literal, exiting...");
 			System.exit(2);
 		}
-		
+
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
-		
+
 		return "numOfTrailsPerDistrict";
 	}
 
@@ -57,12 +57,26 @@ public class WelcomeController {
 	@RequestMapping("/trailClimbLessThanXM")
 	public String trailClimbLessThanXM(@RequestParam("climb") String climb, Model model) {
 
-		System.out.println("climb" + climb);
+		System.out.println("querying climb less than " );
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailClimbLessThanXM", new String[] {climb});
 
-		model.addAttribute("climbHeight", climb);
+		//return districtName, trailClimb, trailName
 
-		//LinkedHashmap structure
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
 
+
+		for(ArrayList<String> trailList:queryResults) {
+
+			for(String res: trailList) {
+				System.out.println(res);
+			}
+		}
+
+		model.addAttribute("results", queryResults);
+
+		model.addAttribute("climb", climb);
 
 		return "trailClimbLessThanXM";
 	}
@@ -73,8 +87,25 @@ public class WelcomeController {
 	public String trailsLongerThanXKm(@RequestParam("length") String length, Model model) {
 
 		System.out.println("length" + length);
-		model.addAttribute("length", length);
+		System.out.println("querying trails longer than " + length );
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailsLongerThanXKm", new String[] {length});
 
+		//return districtName, trailClimb, trailName
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+
+		for(ArrayList<String> trailList:queryResults) {
+
+			for(String res: trailList) {
+				System.out.println(res);
+			}
+		}
+		
+		model.addAttribute("length", length);
+		model.addAttribute("results", queryResults);
 
 		return "trailsLongerThanXKm";
 	}
@@ -83,8 +114,26 @@ public class WelcomeController {
 	@RequestMapping("/trailQualityGreaterThanX")
 	public String trailQualityGreaterThanX(@RequestParam("quality") String quality, Model model) {
 
-		System.out.println("quality" + quality);
+		System.out.println("querying trail quality greater than " + quality );
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailQualityGreaterThanX", new String[] {quality});
+
+		//return districtName, trailClimb, trailName
+
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+
+		for(ArrayList<String> trailList:queryResults) {
+
+			for(String res: trailList) {
+				System.out.println(res);
+			}
+		}
+
 		model.addAttribute("quality", quality);
+		model.addAttribute("results", queryResults);
 
 		return "trailQualityGreaterThanX";
 	}
@@ -93,60 +142,98 @@ public class WelcomeController {
 	@RequestMapping("/trailsWithSameStartAndEnd")
 	public String trailsWithSameStartAndEnd(Model model) {
 
-		model.addAttribute("lat", 342);
+		System.out.println("querying trailsWithSameStartAndEnd");
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailsWithSameStartAndEnd", null);
 
-		return "trailQualityGreaterThanX";
+
+		System.out.println("query: " + queryText);
+		//return ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+
+		for(ArrayList<String> trailList:queryResults) {
+
+			for(String res: trailList) {
+				System.out.println(res);
+			}
+		}
+
+		//		ArrayList<ArrayList<String>> queryResults = new ArrayList<ArrayList<String>>(); 
+		//		ArrayList<String> temp = new ArrayList<>();
+		//		temp.add("Cork");
+		//		temp.add("Trail2");
+		//		temp.add("12,23");
+		//		temp.add("54,3");
+		//		queryResults.add(temp);
+		//		
+		model.addAttribute("results", queryResults);
+
+
+		return "trailsWithSameStartAndEnd";
 	}
 
 
 	@RequestMapping("/trailsWithCircularFormat")
 	public String trailsWithCircularFormat(@RequestParam("long") String lng,@RequestParam("lat") String lat, Model model) {
-		System.out.println("long:" + lng);
-		System.out.println("lat:" + lat);
 
-		
+		System.out.println("querying trails with circular format with " + lng + "," + lat);
+		// Get the SPARQL query string
+		//parameters: current long and lat, format
+		String queryText = remote.getQueryText("trailsWithCircularFormat", new String[] {lng, lat, "Circular"});
+
+		//return ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+
+		for(ArrayList<String> trailList:queryResults) {
+
+			for(String res: trailList) {
+				System.out.println(res);
+			}
+		}
+
+		model.addAttribute("results", queryResults);
+
 		return "trailsWithCircularFormat";
 	}
-	
+
+
+	@RequestMapping("/trailsRankBasedOnTimeAndDogsAllowed")
+	public String trailsRankBasedOnTimeAndDogsAllowed(Model model) {
+
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailsRankBasedOnTimeAndDogsAllowed", null);
+
+		//return ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+
+		for(ArrayList<String> trailList:queryResults) {
+
+			for(String res: trailList) {
+				System.out.println(res);
+			}
+		}
+
+		model.addAttribute("results", queryResults);
+
+
+		return "trailsRankBasedOnTimeAndDogsAllowed";
+	}
+
 
 	@RequestMapping("/redirectQuery")
 	public String redirectQuery(@RequestParam("queryNum") String queryNum, Model model) {
 
 		//read the request parameter from the HTML form
 		model.addAttribute("itemNumber", queryNum);
-
-		//treeMap --> automagic sort order by key
-		//hashMap --> unordered
-		//LinkedHashMap --> in order you add
-
-		HashMap<String, String> hmap = new LinkedHashMap<String, String>();
-		hmap.put("Cork", "432");
-		hmap.put("Dublin", "2442");
-		model.addAttribute("hmap", hmap);
-
-
-		List<Trail> trailList = new ArrayList<>();
-
-		Trail t1 = new Trail();
-		t1.setDistrict("Cork");
-		t1.setName("Trail1");
-		t1.setCompletionTime("150");
-		t1.setDogsAllowed(true);
-		t1.setStartPoint("-");
-		t1.setLength("1442");
-		trailList.add(t1);
-
-		Trail t2 = new Trail();
-		t2.setDistrict("Dublin");
-		t2.setName("Trail2");
-		t2.setLength("232");
-		t2.setStartPoint("-");
-		t2.setCompletionTime("132");
-		t2.setDogsAllowed(true);
-		t2.setDogsAllowed(true);
-		trailList.add(t2);
-		
-		model.addAttribute("trailList", trailList);
 
 		switch(Integer.parseInt(queryNum)) {
 
@@ -165,16 +252,17 @@ public class WelcomeController {
 		case 6:
 			return "trailsWithCircularFormat_params";
 		case 7:
-			return "trailsWithSameStartAndEnd";
+			//query trails with same start and end
+			return "redirect:/trailsWithSameStartAndEnd";
 		case 8:
-			return "trailsRankBasedOnTimeAndDogsAllowed";
+			//query trails rank based on time and dogs allowed
+			return "redirect:/trailsRankBasedOnTimeAndDogsAllowed";
 		default:
 			return "welcome";
 
 		}
 
 	}
-
 
 }
 

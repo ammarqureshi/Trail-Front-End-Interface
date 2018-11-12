@@ -42,12 +42,17 @@ tr:nth-child(even) {
     <th>Trail name</th>
     <th>District</th>
   </tr>  
-   <c:forEach items="${hmap}" var="distrTrails">
-     <tr>
-   		<td>${distrTrails.key} </td>
-   		<td>${distrTrails.value}</td>
- 	 </tr>
-    </c:forEach>
+  
+<c:forEach items="${results}" var="result">
+		<tr>
+			<c:forEach items="${result}" var="item">
+				<td>${item}</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
+    
+    
+    
 </table>
 	
 	

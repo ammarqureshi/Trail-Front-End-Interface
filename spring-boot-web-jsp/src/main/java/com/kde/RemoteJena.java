@@ -38,7 +38,7 @@ public class RemoteJena {
 	
 	
 	public String getQueryText(String queryName, String params[]) {
-		String query = queryDir + "\\" + queryMap.get(queryName) + ".sparql";
+		String query = queryDir + "//" + queryMap.get(queryName) + ".sparql";
 		final Path queryPath = Paths.get(query);
 		if (!Files.isReadable(queryPath)) {
 			System.out.println(queryPath.toAbsolutePath() + " does not exist or is not readable, please check the path");

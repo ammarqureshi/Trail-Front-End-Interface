@@ -27,12 +27,15 @@
 	  </tr>  
   
   
-   <c:forEach items="${trail}" var="trailList">
-     <tr>
-   		<td>${trail.name}</td>
-		<td>${trail.format}</td>
- 	 </tr>
-    </c:forEach>
+<c:forEach items="${results}" var="result">
+		<tr>
+			<c:forEach items="${result}" var="item">
+				<td>${item}</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
+    
+    
 </table>
 	
 	

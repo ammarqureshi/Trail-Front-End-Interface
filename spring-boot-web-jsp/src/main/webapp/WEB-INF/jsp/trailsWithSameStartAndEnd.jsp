@@ -40,19 +40,21 @@ tr:nth-child(even) {
   <tr>
     <th>District</th>
     <th>Trail name</th>
-    <th>Start lat,long</th>
-    <th>End lat,long</th>
-    
+    <th>Start Point</th>
+    <th>End Point</th>
   </tr>  
-   <c:forEach items="${trail}" var="trailList">
-     <tr>
-   		<td>${trail.district}</td>
-		<td>${trail.name}</td>
-		<td>${trail.startLatLong}</td>
-		<td>${trail.endLatLong}</td>
-		
- 	 </tr>
-    </c:forEach>
+  
+  
+	<c:forEach items="${results}" var="result">
+		<tr>
+			<c:forEach items="${result}" var="item">
+				<td>${item}</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
+    
+    
+    
 </table>
 	
 	

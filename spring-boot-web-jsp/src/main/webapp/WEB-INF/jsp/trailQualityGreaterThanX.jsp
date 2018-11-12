@@ -43,17 +43,21 @@ tr:nth-child(even) {
 <table>
   <tr>
     <th>District</th>
-    <th>Trail name</th>
     <th>Quality</th>
-    
+    <th>Trail name</th>
   </tr>  
-   <c:forEach items="${trail}" var="trailList">
-     <tr>
-   		<td>${trail.district} </td>
-   		<td>${trail.name}</td>
-		<td>${trail.length}</td>
- 	 </tr>
-    </c:forEach>
+  
+  
+<c:forEach items="${results}" var="result">
+		<tr>
+			<c:forEach items="${result}" var="item">
+				<td>${item}</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
+    
+    
+    
 </table>
 	
 	

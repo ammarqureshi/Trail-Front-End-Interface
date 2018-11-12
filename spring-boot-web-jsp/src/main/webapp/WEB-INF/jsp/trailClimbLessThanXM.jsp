@@ -16,7 +16,7 @@
 
 	
 <head>
-<h2>Districts with trail climb height of less than ${climbHeight} metres</h2>
+<h2>Districts with trail climb height of less than ${climb} metres</h2>
 
 <style>
 table {
@@ -40,17 +40,21 @@ tr:nth-child(even) {
 <table class="pure-table">
   <tr>
     <th>District</th>
+    <th>Trail climb(m)</th>
     <th>Trail name</th>
-    <th>Climb height</th>
+  </tr> 
+  
+  
+	<c:forEach items="${results}" var="result">
+		<tr>
+			<c:forEach items="${result}" var="item">
+				<td>${item}</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
     
-  </tr>  
-   <c:forEach items="${trail}" var="trailList">
-     <tr>
-   		<td>${trail.district} </td>
-   		<td>${trail.name}</td>
-		<td>${trail.climbHeight}</td>
- 	 </tr>
-    </c:forEach>
+    
+    
 </table>
 	
 	<form action = "query" method = "GET">
