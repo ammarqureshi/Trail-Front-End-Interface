@@ -14,7 +14,7 @@
 
 	
 <head>
-	<h2>Trails in District "${district}"</h2>
+	<h2>Trails in district "${district}"</h2>
 
 <style>
 table {

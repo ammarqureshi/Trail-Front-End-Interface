@@ -46,7 +46,10 @@ public class WelcomeController {
 			System.err.println("A query result is not a resource or literal, exiting...");
 			System.exit(2);
 		}
-
+		String district = queryResults.get(0).get(0);
+		
+		System.out.println("District: " + district);
+		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
 
