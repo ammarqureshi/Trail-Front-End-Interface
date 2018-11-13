@@ -70,6 +70,10 @@ public class WelcomeController {
 			System.exit(2);
 		}
 
+		String district = queryResults.get(0).get(0);
+		System.out.println("District: " + district);
+		
+		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
 
@@ -111,14 +115,12 @@ public class WelcomeController {
 
 		System.out.println("length" + length);
 		System.out.println("querying trails longer than " + length );
+		
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("trailsLongerThanXKm", new String[] {length});
 
-		//return districtName, trailClimb, trailName
-
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
-
 
 		for(ArrayList<String> trailList:queryResults) {
 

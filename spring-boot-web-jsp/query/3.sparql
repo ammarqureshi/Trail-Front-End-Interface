@@ -19,7 +19,7 @@ PREFIX trail: <http://example.org/trail/>
 #   Parameters:  length(km)
 #   Returns:     district
 
-SELECT ?districtName
+SELECT ?districtName ?trailLength
 WHERE {
   ?district a osi:Municipal_District.
   ?district rdfs:label ?districtName.
@@ -32,4 +32,4 @@ WHERE {
   ?trail trail:length ?trailLength.
 
   FILTER(xsd:integer(?trailLength) > %PARAM_0% && geof:sfWithin(?trailStartPoint, ?wkt)).
-}
+} ORDER BY ?trailLength

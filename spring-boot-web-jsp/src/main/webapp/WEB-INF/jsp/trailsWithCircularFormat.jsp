@@ -39,7 +39,7 @@
 </table>
 	
 	
-<form action = "query" method = "GET">
+	<form action = "query" method = "GET">
 		<input class="pure-button pure-button-primary" type = "submit" value = "Query"/>
 	</form>
 	

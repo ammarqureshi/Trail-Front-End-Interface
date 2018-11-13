@@ -14,7 +14,7 @@
 
 	
 <head>
-<h2>These are the trails in your district</h2>
+	<h2>Trails in District "${district}"</h2>
 
 <style>
 table {
@@ -56,9 +56,9 @@ tr:nth-child(even) {
 </table>
 	
 	
-	<form action = "query" method = "GET">
-		<input type = "submit"/>
-	
+	<form action="query" method="GET">
+		<input class="pure-button pure-button-primary" type="submit"
+			value="Query" />
 	</form>
 	
 </body>
