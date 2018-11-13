@@ -14,7 +14,7 @@
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
 <div>
-	<form class="pure-form" action = "numOfTrailsPerDistrict" method = "GET">
+	<form class="pure-form" action = "trailsInYourDistrict" method = "GET">
 Trails near
  <input name="lat" type="text" placeholder = "current latitude">,
   <input name="long" type="text" placeholder = "current longitude">

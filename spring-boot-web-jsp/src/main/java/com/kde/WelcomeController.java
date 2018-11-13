@@ -53,6 +53,29 @@ public class WelcomeController {
 		return "numOfTrailsPerDistrict";
 	}
 
+	@RequestMapping("/trailsInYourDistrict")
+	public String trailsInYourDistrict(@RequestParam("lat") String lat, @RequestParam("long") String lng, Model model) {
+
+		System.out.println("lat" + lat);
+		System.out.println("long" + lng);
+
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailsInYourDistrict", new String[] {lng, lat});
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+		if(queryResults == null) {
+			System.err.println("A query result is not a resource or literal, exiting...");
+			System.exit(2);
+		}
+
+		model.addAttribute("results", queryResults);
+		System.out.println("Results added to model...");
+
+		return "trailsInYourDistrict";
+	}
+
 
 	@RequestMapping("/trailClimbLessThanXM")
 	public String trailClimbLessThanXM(@RequestParam("climb") String climb, Model model) {

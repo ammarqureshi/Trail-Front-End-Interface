@@ -14,7 +14,7 @@
 
 	
 <head>
-<h2>Trails in District "${district}" </h2>
+<h2>These are the trails in your district</h2>
 
 <style>
 table {
@@ -39,8 +39,8 @@ tr:nth-child(even) {
 
 <table>
   <tr>
+  	<th>District</th>
     <th>Trail name</th>
-    <th>District</th>
   </tr>  
   
 <c:forEach items="${results}" var="result">
