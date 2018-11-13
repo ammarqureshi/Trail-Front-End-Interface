@@ -34,4 +34,7 @@ WHERE {
   ?trailQuality trail:value ?trailQualityValue.
 
   FILTER(?trailQualityValue > %PARAM_0% && geof:sfWithin(?trailStartPoint, ?wkt)).
+  
+  # Remove duplicates that have the @en language tag
+    FILTER ( LANG(?districtName) = "" && LANG(?trailName) = "").
 }

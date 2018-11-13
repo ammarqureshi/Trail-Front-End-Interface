@@ -32,4 +32,7 @@ WHERE {
   ?trail trail:length ?trailLength.
 
   FILTER(xsd:integer(?trailLength) > %PARAM_0% && geof:sfWithin(?trailStartPoint, ?wkt)).
+  
+  # Remove duplicates that have the @en language tag
+  FILTER ( LANG(?districtName) = "" ).
 } ORDER BY ?trailLength
