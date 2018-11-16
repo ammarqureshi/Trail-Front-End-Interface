@@ -103,7 +103,7 @@ public class WelcomeController {
 				System.out.println(res);
 			}
 		}
-		
+
 		model.addAttribute("length", length);
 		model.addAttribute("results", queryResults);
 
@@ -211,21 +211,22 @@ public class WelcomeController {
 
 		//return ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
 
-		// queryResults is a list of lists, with each inner list containing the results for that row
+		System.out.println("\n\n queryText: " + queryText + "\n\n");
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
 
+		System.out.println("dogs results ...");
 
-		for(ArrayList<String> trailList:queryResults) {
+				for(ArrayList<String> trailList:queryResults) {
 
-			for(String res: trailList) {
-				System.out.println(res);
-			}
-		}
+					for(String res: trailList) {
+						System.out.println(res);
+					}
+				}
 
-		model.addAttribute("results", queryResults);
+				model.addAttribute("results", queryResults);
 
 
-		return "trailsRankBasedOnTimeAndDogsAllowed";
+				return "trailsRankBasedOnTimeAndDogsAllowed";
 	}
 
 
