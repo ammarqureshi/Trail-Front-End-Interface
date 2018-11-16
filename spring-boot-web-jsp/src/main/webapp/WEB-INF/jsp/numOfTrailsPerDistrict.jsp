@@ -33,7 +33,7 @@ tr:nth-child(even) {
 }
 </style>
 
-<h2>Number of trails per district</h2>
+<h2>Number of trails in "${district}"</h2>
 
 </head>
 

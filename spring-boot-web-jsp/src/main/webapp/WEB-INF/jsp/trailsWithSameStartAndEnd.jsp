@@ -39,9 +39,9 @@ tr:nth-child(even) {
 <table class="pure-table">
   <tr>
     <th>District</th>
-    <th>Trail name</th>
     <th>Start Point</th>
     <th>End Point</th>
+    <th>Trail name</th>
   </tr>  
   
   
@@ -58,9 +58,9 @@ tr:nth-child(even) {
 </table>
 	
 	
-	<form action = "query" method = "GET">
-		<input type = "submit"/>
-	
+	<form action="query" method="GET">
+		<input class="pure-button pure-button-primary" type="submit"
+			value="Query" />
 	</form>
 	
 </body>

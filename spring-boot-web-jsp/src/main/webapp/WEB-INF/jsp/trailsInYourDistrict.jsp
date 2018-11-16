@@ -14,7 +14,7 @@
 
 	
 <head>
-<h2>Trails in District "${district}" </h2>
+	<h2>Trails in district "${district}"</h2>
 
 <style>
 table {
@@ -39,8 +39,8 @@ tr:nth-child(even) {
 
 <table>
   <tr>
+  	<th>District</th>
     <th>Trail name</th>
-    <th>District</th>
   </tr>  
   
 <c:forEach items="${results}" var="result">
@@ -56,9 +56,9 @@ tr:nth-child(even) {
 </table>
 	
 	
-	<form action = "query" method = "GET">
-		<input type = "submit"/>
-	
+	<form action="query" method="GET">
+		<input class="pure-button pure-button-primary" type="submit"
+			value="Query" />
 	</form>
 	
 </body>

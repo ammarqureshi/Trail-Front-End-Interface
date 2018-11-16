@@ -16,7 +16,7 @@
 
 	
 <head>
-<h2>Districts with trail greater than quality of ${quality} </h2>
+<h2>Districts with trail quality greater than ${quality}</h2>
 
 <style>
 table {
@@ -43,8 +43,8 @@ tr:nth-child(even) {
 <table>
   <tr>
     <th>District</th>
-    <th>Quality</th>
     <th>Trail name</th>
+    <th>Quality</th>
   </tr>  
   
   

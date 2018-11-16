@@ -46,11 +46,41 @@ public class WelcomeController {
 			System.err.println("A query result is not a resource or literal, exiting...");
 			System.exit(2);
 		}
-
+		String district = queryResults.get(0).get(0);
+		
+		System.out.println("District: " + district);
+		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
 
 		return "numOfTrailsPerDistrict";
+	}
+
+	@RequestMapping("/trailsInYourDistrict")
+	public String trailsInYourDistrict(@RequestParam("lat") String lat, @RequestParam("long") String lng, Model model) {
+
+		System.out.println("lat" + lat);
+		System.out.println("long" + lng);
+
+		// Get the SPARQL query string
+		String queryText = remote.getQueryText("trailsInYourDistrict", new String[] {lng, lat});
+
+		// queryResults is a list of lists, with each inner list containing the results for that row
+		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+
+		if(queryResults == null) {
+			System.err.println("A query result is not a resource or literal, exiting...");
+			System.exit(2);
+		}
+
+		String district = queryResults.get(0).get(0);
+		System.out.println("District: " + district);
+		
+		model.addAttribute("district", district);
+		model.addAttribute("results", queryResults);
+		System.out.println("Results added to model...");
+
+		return "trailsInYourDistrict";
 	}
 
 
@@ -88,14 +118,12 @@ public class WelcomeController {
 
 		System.out.println("length" + length);
 		System.out.println("querying trails longer than " + length );
+		
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("trailsLongerThanXKm", new String[] {length});
 
-		//return districtName, trailClimb, trailName
-
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
-
 
 		for(ArrayList<String> trailList:queryResults) {
 
