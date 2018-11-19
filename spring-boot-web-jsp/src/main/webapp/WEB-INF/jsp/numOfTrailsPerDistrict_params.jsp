@@ -32,7 +32,7 @@
           
    <div class="wrapper">
           
-	   <input class="pure-button pure-button-primary" type="submit" value="Sumbit">
+	   <input class="pure-button pure-button-primary" type="submit" value="Submit">
    </div>
    
    

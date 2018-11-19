@@ -61,11 +61,17 @@ tr:nth-child(even) {
 </table>
 	
 	
+	<br>
+	<br>
 	
-	<form action = "query" method = "GET">
-		<input class="pure-button pure-button-primary" type = "submit" value = "Query"/>
+<div class="wrapper">
+
+	<form action="query" method="GET">
+		<input class="pure-button pure-button-primary" type="submit"
+			value="Query" />
 	</form>
-	
+</div>
+
 	
 </body>
 </html>

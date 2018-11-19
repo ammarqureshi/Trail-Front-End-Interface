@@ -14,10 +14,28 @@
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
 
-
-
+	
+<head>
 <h2>Trails in District "${district}" with circular format </h2>
 
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
 
 <br></br>
 <table class="pure-table">
@@ -37,12 +55,17 @@
     
     
 </table>
+	<br>
+	<br>
 	
-	
-	<form action = "query" method = "GET">
-		<input class="pure-button pure-button-primary" type = "submit" value = "Query"/>
+<div class="wrapper">
+
+	<form action="query" method="GET">
+		<input class="pure-button pure-button-primary" type="submit"
+			value="Query" />
 	</form>
-	
-	
+</div>
+
+
 </body>
 </html>

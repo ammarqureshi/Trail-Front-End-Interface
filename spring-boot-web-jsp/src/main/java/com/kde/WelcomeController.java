@@ -44,16 +44,22 @@ public class WelcomeController {
 
 		if(queryResults == null) {
 			System.err.println("A query result is not a resource or literal, exiting...");
-			System.exit(2);
+			return "error";
 		}
-		String district = queryResults.get(0).get(0);
 		
+		try {
+		String district = queryResults.get(0).get(0);
 		System.out.println("District: " + district);
 		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
-
 		return "numOfTrailsPerDistrict";
+
+		}
+		catch(Exception e) {
+			return "error";
+		}
+
 	}
 
 	@RequestMapping("/trailsInYourDistrict")
@@ -70,8 +76,9 @@ public class WelcomeController {
 
 		if(queryResults == null) {
 			System.err.println("A query result is not a resource or literal, exiting...");
-			System.exit(2);
 		}
+		
+		else {
 
 		String district = queryResults.get(0).get(0);
 		System.out.println("District: " + district);
@@ -79,7 +86,7 @@ public class WelcomeController {
 		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
-
+		}
 		return "trailsInYourDistrict";
 	}
 
