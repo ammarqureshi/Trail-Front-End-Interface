@@ -41,14 +41,14 @@
 		
 		<form class = "wrapper" action="redirectQuery" method = "GET">
 	  <select name="queryNum">	  
-	    <option value="1">Number of trails per district</option>
-	    <option value="2">Trails in your district</option>
+	    <option value="1">Number of trails in your district</option>
+	    <option value="2">Name of trails in your district</option>
 	    <option value="3">What districts have a trail that are longer than X km</option>
 	    <option value="4">What districts have a trail that have a quality greater than X</option>
 	    <option value="5">What districts have a trail that has a climb of less than X m</option>
 	    <option value="6">What trails have a circular format in X district</option>
 	    <option value="7">What trails start and end in the same district</option>
-	    <option value="8">Rank trails within a district based on Estimated Completion Time and that allow dogs</option>
+	    <option value="8">Rank trails within a district based on estimated completion time and that allow dogs</option>
 	  </select>
 	  
 	  <input class="pure-button pure-button-primary" type="submit" value="Submit">

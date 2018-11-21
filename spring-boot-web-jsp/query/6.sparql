@@ -19,7 +19,7 @@ PREFIX trail: <http://example.org/trail/>
 #   Parameters:  current long and lat, format
 #   Returns:     district, trailName
 
-SELECT ?districtName ?trailName
+SELECT ?districtName ?trailName ?formatValue
 WHERE {
   ?district a osi:Municipal_District.
   ?district rdfs:label ?districtName.
@@ -31,7 +31,8 @@ WHERE {
   ?trail trail:startPoint ?spGeom.
   ?spGeom geo:asWKT ?trailStartPoint.
   ?trail trail:hasFormat ?trailFormat.
-  ?trailFormat trail:value "%PARAM_2%"^^xsd:string
+  ?trailFormat trail:value "%PARAM_2%"^^xsd:string.
+  ?trailFormat trail:value ?formatValue.
 
   # Get the current district. POINT(LONG, LAT).
   FILTER(geof:sfWithin("POINT(%PARAM_0% %PARAM_1%)"^^sf:wktLiteral, ?wkt) && geof:sfWithin(?trailStartPoint, ?wkt)).

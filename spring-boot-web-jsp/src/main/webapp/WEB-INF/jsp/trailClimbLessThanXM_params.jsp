@@ -14,6 +14,10 @@
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
 
+<body>
+<h2>Enter a height in meters (eg. 1000)</h2>
+	<h4>This query will return districts with trails that have a climb less than the input height</h4>
+	<br>
 <div>
 	<form class="pure-form" action = "trailClimbLessThanXM" method = "GET">
 
@@ -28,5 +32,5 @@
    </form>
    
    </div>
-
+</body>
 </html>

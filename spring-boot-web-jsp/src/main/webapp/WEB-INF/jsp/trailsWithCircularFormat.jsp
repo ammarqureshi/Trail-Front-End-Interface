@@ -40,8 +40,9 @@ tr:nth-child(even) {
 <br></br>
 <table class="pure-table">
 	  <tr>
-	    <th>Trail name</th>
-	    <th>Trail format</th>  
+	    <th>District name</th>
+	    <th>Trail name</th> 
+	    <th>Trail format</th> 
 	  </tr>  
   
   

@@ -45,9 +45,11 @@ tr:nth-child(even) {
   <tr>
     <th>District</th>
 	<th>Trail start point</th>
+	<th>Province</th>
     <th>Trail completion time</th>  
     <th>Trail name</th>
     <th>Dogs allowed</th>
+   
   </tr>  
   
   
