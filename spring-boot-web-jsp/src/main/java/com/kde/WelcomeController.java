@@ -1,9 +1,6 @@
 package com.kde;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -48,13 +45,12 @@ public class WelcomeController {
 		}
 		
 		try {
-		String district = queryResults.get(0).get(0);
-		System.out.println("District: " + district);
-		model.addAttribute("district", district);
-		model.addAttribute("results", queryResults);
-		System.out.println("Results added to model...");
-		return "numOfTrailsPerDistrict";
-
+			String district = queryResults.get(0).get(0);
+			System.out.println("District: " + district);
+			model.addAttribute("district", district);
+			model.addAttribute("results", queryResults);
+			System.out.println("Results added to model...");
+			return "numOfTrailsPerDistrict";
 		}
 		catch(Exception e) {
 			return "error";
@@ -79,15 +75,13 @@ public class WelcomeController {
 		}
 		
 		try {
-
-		
-		String district = queryResults.get(0).get(0);
-		System.out.println("District: " + district);
-		
-		model.addAttribute("district", district);
-		model.addAttribute("results", queryResults);
-		System.out.println("Results added to model...");
-		return "trailsInYourDistrict";
+			String district = queryResults.get(0).get(0);
+			System.out.println("District: " + district);
+			
+			model.addAttribute("district", district);
+			model.addAttribute("results", queryResults);
+			System.out.println("Results added to model...");
+			return "trailsInYourDistrict";
 		}
 		catch(Exception e) {
 			return "error";
@@ -98,7 +92,8 @@ public class WelcomeController {
 	@RequestMapping("/trailClimbLessThanXM")
 	public String trailClimbLessThanXM(@RequestParam("climb") String climb, Model model) {
 
-		System.out.println("querying climb less than " );
+		System.out.println("querying climb less than " + climb + "m" );
+		
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("trailClimbLessThanXM", new String[] {climb});
 
@@ -116,19 +111,15 @@ public class WelcomeController {
 		}
 
 		model.addAttribute("results", queryResults);
-
 		model.addAttribute("climb", climb);
 
 		return "trailClimbLessThanXM";
 	}
 
-	//not done
-
 	@RequestMapping("/trailsLongerThanXKm")
 	public String trailsLongerThanXKm(@RequestParam("length") String length, Model model) {
 
-		System.out.println("length" + length);
-		System.out.println("querying trails longer than " + length );
+		System.out.println("querying trails longer than " + length + "km");
 		
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("trailsLongerThanXKm", new String[] {length});
@@ -153,7 +144,8 @@ public class WelcomeController {
 	@RequestMapping("/trailQualityGreaterThanX")
 	public String trailQualityGreaterThanX(@RequestParam("quality") String quality, Model model) {
 
-		System.out.println("querying trail quality greater than " + quality );
+		System.out.println("querying trail quality greater than " + quality + " stars");
+		
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("trailQualityGreaterThanX", new String[] {quality});
 
@@ -181,12 +173,11 @@ public class WelcomeController {
 	@RequestMapping("/trailsWithSameStartAndEnd")
 	public String trailsWithSameStartAndEnd(Model model) {
 
-		System.out.println("querying trailsWithSameStartAndEnd");
+		System.out.println("querying trails with same start and end point");
+		
 		// Get the SPARQL query string
 		String queryText = remote.getQueryText("trailsWithSameStartAndEnd", null);
-
-
-		System.out.println("query: " + queryText);
+		
 		//return ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
 
 		// queryResults is a list of lists, with each inner list containing the results for that row
@@ -198,19 +189,9 @@ public class WelcomeController {
 			for(String res: trailList) {
 				System.out.println(res);
 			}
-		}
-
-		//		ArrayList<ArrayList<String>> queryResults = new ArrayList<ArrayList<String>>(); 
-		//		ArrayList<String> temp = new ArrayList<>();
-		//		temp.add("Cork");
-		//		temp.add("Trail2");
-		//		temp.add("12,23");
-		//		temp.add("54,3");
-		//		queryResults.add(temp);
-		//		
+		}	
+		
 		model.addAttribute("results", queryResults);
-
-
 		return "trailsWithSameStartAndEnd";
 	}
 
@@ -219,6 +200,7 @@ public class WelcomeController {
 	public String trailsWithCircularFormat(@RequestParam("long") String lng,@RequestParam("lat") String lat, Model model) {
 
 		System.out.println("querying trails with circular format with " + lng + "," + lat);
+		
 		// Get the SPARQL query string
 		//parameters: current long and lat, format
 		String queryText = remote.getQueryText("trailsWithCircularFormat", new String[] {lng, lat, "Circular"});
@@ -228,6 +210,7 @@ public class WelcomeController {
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
 
+		// There is only 1 district returned for each call to this query. Get that district
 		String district = queryResults.get(0).get(0);
 		
 		model.addAttribute("district", district);
@@ -245,22 +228,20 @@ public class WelcomeController {
 
 		//return ?districtName ?trailName, ?trailStartPoint, ?trailEndPoint
 
-		System.out.println("\n\n queryText: " + queryText + "\n\n");
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
 
 		System.out.println("dogs results ...");
 
-				for(ArrayList<String> trailList:queryResults) {
+		for (ArrayList<String> trailList : queryResults) {
 
-					for(String res: trailList) {
-						System.out.println(res);
-					}
-				}
+			for (String res : trailList) {
+				System.out.println(res);
+			}
+		}
 
-				model.addAttribute("results", queryResults);
+		model.addAttribute("results", queryResults);
 
-
-				return "trailsRankBasedOnTimeAndDogsAllowed";
+		return "trailsRankBasedOnTimeAndDogsAllowed";
 	}
 
 
@@ -287,10 +268,8 @@ public class WelcomeController {
 		case 6:
 			return "trailsWithCircularFormat_params";
 		case 7:
-			//query trails with same start and end
 			return "redirect:/trailsWithSameStartAndEnd";
 		case 8:
-			//query trails rank based on time and dogs allowed
 			return "redirect:/trailsRankBasedOnTimeAndDogsAllowed";
 		default:
 			return "welcome";
