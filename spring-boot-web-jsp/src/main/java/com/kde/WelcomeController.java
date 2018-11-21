@@ -74,14 +74,6 @@ public class WelcomeController {
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
 		
-		for(int i = 0; i < queryResults.size(); i++) {
-			ArrayList<String> column = queryResults.get(i);
-			System.out.println("Column: " + i);
-			for(int j = 0; j < column.size(); j++) {
-				System.out.println("Row " + i+ ": " + column.get(j));
-			}
-		}
-
 		if(queryResults == null) {
 			System.err.println("A query result is not a resource or literal, exiting...");
 		}
@@ -236,14 +228,9 @@ public class WelcomeController {
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
 
-
-		for(ArrayList<String> trailList:queryResults) {
-
-			for(String res: trailList) {
-				System.out.println(res);
-			}
-		}
-
+		String district = queryResults.get(0).get(0);
+		
+		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 
 		return "trailsWithCircularFormat";
