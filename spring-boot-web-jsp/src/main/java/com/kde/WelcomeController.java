@@ -73,21 +73,33 @@ public class WelcomeController {
 
 		// queryResults is a list of lists, with each inner list containing the results for that row
 		ArrayList<ArrayList<String>> queryResults = remote.issueSelectQuery(queryText);
+		
+		for(int i = 0; i < queryResults.size(); i++) {
+			ArrayList<String> column = queryResults.get(i);
+			System.out.println("Column: " + i);
+			for(int j = 0; j < column.size(); j++) {
+				System.out.println("Row " + i+ ": " + column.get(j));
+			}
+		}
 
 		if(queryResults == null) {
 			System.err.println("A query result is not a resource or literal, exiting...");
 		}
 		
-		else {
+		try {
 
+		
 		String district = queryResults.get(0).get(0);
 		System.out.println("District: " + district);
 		
 		model.addAttribute("district", district);
 		model.addAttribute("results", queryResults);
 		System.out.println("Results added to model...");
-		}
 		return "trailsInYourDistrict";
+		}
+		catch(Exception e) {
+			return "error";
+		}
 	}
 
 

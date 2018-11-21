@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>No Results found :(</title>
-<h2> No Results found :(</h2>
+<h2> No Results found for your input parameters :(</h2>
+<h3> Try querying again with different parameters</h3>
 </head>
 <body>
 <div class="wrapper">
