@@ -3,7 +3,7 @@
 ### Instructions to setup Parliament
 
 
-### Instructions to Query Interface
+### Instructions to query interface
 ```
 mvn clean package
 ```
