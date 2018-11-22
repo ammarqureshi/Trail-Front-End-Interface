@@ -1,7 +1,8 @@
 # Front end interface for Trail Query
 
 ### Instructions to setup Parliament
-
+Parliament port is 8089
+get data from /data folder
 
 ### Instructions to query interface
 ```
