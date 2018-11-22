@@ -1,7 +1,9 @@
 # Front end interface for Trail Query
 
+### Instructions to setup Parliament
 
-### Instructions to Run 
+
+### Instructions to Query Interface
 ```
 mvn clean package
 ```
